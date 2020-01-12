@@ -1,6 +1,7 @@
 package com.example.musicpractice.ui.music;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,13 @@ import com.example.musicpractice.R;
 public class MusicFragment extends Fragment implements View.OnClickListener {
 
     private MusicViewModel musicViewModel;
+    private static final String TAG = "MusicFragment";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "Creating");
+
         musicViewModel =
                 ViewModelProviders.of(this).get(MusicViewModel.class);
         View root = inflater.inflate(R.layout.fragment_music, container, false);
@@ -26,10 +31,13 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
         EditText newMusic = root.findViewById(R.id.newMusic);
         Button confirmAddButton = root.findViewById(R.id.confirmAddButton);
 
-        newMusic.setVisibility(View.GONE);
-        confirmAddButton.setVisibility(View.GONE);
+        newMusic.setHint("Mozart Concerto in D Major");
 
-        addMusicButton.setOnClickListener(unused -> onClick(root));
+        newMusic.setVisibility(View.VISIBLE);
+        confirmAddButton.setVisibility(View.VISIBLE);
+
+        addMusicButton.setOnClickListener(this);
+        confirmAddButton.setOnClickListener(this);
 
         return root;
 
@@ -39,8 +47,40 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        view.findViewById(R.id.addMusicButton).setVisibility(View.GONE);
-        view.findViewById(R.id.newMusic).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.confirmAddButton).setVisibility(View.VISIBLE);
+        Button addMusicButton = view.findViewById(R.id.addMusicButton);
+        Button confirmAddButton = view.findViewById(R.id.confirmAddButton);
+        EditText newMusic = view.findViewById(R.id.newMusic);
+        confirmAddButton.setVisibility(View.GONE);
+
+
+        switch (view.getId()) {
+            case R.id.addMusicButton:
+                Log.i(TAG, "addMusicButton clicked");
+
+                newMusic.setVisibility(View.GONE);
+                addMusicButton.setVisibility(View.GONE);
+
+                break;
+            case R.id.confirmAddButton:
+                Log.i(TAG, "confirmAddButton clicked");
+
+                newMusic.setVisibility(View.GONE);
+                confirmAddButton.setVisibility(View.GONE);
+                addMusicButton.setVisibility(View.VISIBLE);
+//
+//                Button myButton = new Button(getActivity());
+//                myButton.setText(newMusic.getText());
+//                myButton.setId(i);
+//                i++;
+//                LinearLayout musicLayout = view.findViewById(R.id.musicLayout);
+//                musicLayout.addView(myButton);
+//
+                break;
+            // Do this for all buttons.
+            default:
+                throw new IllegalStateException("Unexpected value: " + view.getId());
+        }
+
+
     }
 }

@@ -32,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
      * @param savedInstanceState
      */
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "StartActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

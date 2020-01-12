@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:layout_weight="1"
-            android:text="Add Music" />
+            android:text="@string/add_music" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,16 +26,18 @@
                 android:id="@+id/newMusic"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:width="330dp"
+                android:autofillHints=""
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:gravity="left|center_vertical"
+                android:inputType="textAutoComplete" />
 
             <Button
                 android:id="@+id/confirmAddButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Add" />
+                android:gravity="center|center_vertical"
+                android:text="@string/add" />
         </LinearLayout>
 
         <ScrollView
@@ -44,6 +46,7 @@
             android:layout_weight="1">
 
             <LinearLayout
+                android:id="@+id/musicLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />

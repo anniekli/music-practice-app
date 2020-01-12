@@ -47,7 +47,7 @@ public class CreateNewActivity extends AppCompatActivity {
             errorMessage.setText("Please enter your name");
         } else {
             intent.putExtra("name", setName);
-            Log.i(TAG, "My name is" + setName);
+            Log.i(TAG, "My name is " + setName);
             startActivity(intent);
         }
 
