@@ -12,37 +12,31 @@
         <Button
             android:id="@+id/addMusicButton"
             android:layout_width="match_parent"
-            android:layout_height="109dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="@string/add_music" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="109dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/newMusic"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:width="330dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="left|center_vertical"
-                android:inputType="textAutoComplete" />
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/confirmAddButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center|center_vertical"
+                android:layout_weight="0"
                 android:text="@string/add" />
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="834dp"
             android:layout_weight="1">
 
             <LinearLayout

@@ -17,4 +17,5 @@
     <string name="logo">logo</string>
     <string name="add_music">Add Music</string>
     <string name="add">Add</string>
+    <string name="button">Button</string>
 </resources>
