@@ -18,4 +18,8 @@
     <string name="add_music">Add Music</string>
     <string name="add">Add</string>
     <string name="button">Button</string>
+    <string name="my_music">My Music</string>
+    <string name="total_minutes">TOTAL MINUTES</string>
+    <string name="day_streak">DAY STREAK</string>
+    <string name="your_progress">YOUR PROGRESS</string>
 </resources>
