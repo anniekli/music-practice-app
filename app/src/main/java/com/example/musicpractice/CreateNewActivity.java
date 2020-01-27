@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.musicpractice.ui.home.HomeFragment;
+
 public class CreateNewActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateNewActivity";

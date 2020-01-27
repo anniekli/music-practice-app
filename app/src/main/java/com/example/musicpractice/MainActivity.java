@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.musicpractice.ui.home.HomeFragment;
+import com.example.musicpractice.ui.music.MusicFragment;
+import com.example.musicpractice.ui.send.SendFragment;
+import com.example.musicpractice.ui.share.ShareFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -12,6 +15,7 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +65,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        View hView =  navigationView.getHeaderView(0);
-        TextView nav_user = (TextView)hView.findViewById(R.id.nav_name);
-        nav_user.setText(intent.getStringExtra("name"));
-        Bundle bundle = new Bundle();
-        bundle.putString("name", intent.getStringExtra("name"));
-        Fragment HomeFragment = new Fragment();
-        HomeFragment.setArguments(bundle);
-        Log.i(TAG, bundle.getString("name"));
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.container, HomeFragment).commit();
+        View hView = navigationView.getHeaderView(0);
+        TextView nav_user = hView.findViewById(R.id.nav_name);
+        nav_user.setText(getIntent().getStringExtra("name"));
+
+
+        //Sending name to home fragment
+        getName();
+
 
     }
 
@@ -86,5 +88,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //sends name to home fragment
+    public String getName() {
+        Log.i(TAG, "sending name: " + getIntent().getStringExtra("name"));
+        return getIntent().getStringExtra("name");
     }
 }

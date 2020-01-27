@@ -60,20 +60,22 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
                 addMusicButton.setVisibility(View.GONE);
                 newMusic.setText("");
 
-
                 break;
             case R.id.confirmAddButton:
-                Log.i(TAG, "confirmAddButton clicked");
+                if (!(newMusic.getText().toString().trim().isEmpty())) {
+                    Log.i(TAG, "confirmAddButton clicked");
 
-                newMusic.setVisibility(View.GONE);
-                confirmAddButton.setVisibility(View.GONE);
-                addMusicButton.setVisibility(View.VISIBLE);
+                    newMusic.setVisibility(View.GONE);
+                    confirmAddButton.setVisibility(View.GONE);
+                    addMusicButton.setVisibility(View.VISIBLE);
 
-                Button myButton = new Button(getActivity());
-                myButton.setText(newMusic.getText());
-                myButton.setId(i);
-                i++;
-                getMusicLayout.addView(myButton);
+                    Button myButton = new Button(getActivity());
+                    myButton.setText(newMusic.getText());
+                    myButton.setId(i);
+                    i++;
+                    getMusicLayout.addView(myButton);
+                }
+
 
                 break;
             // Do this for all buttons.
