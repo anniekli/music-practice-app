@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.musicpractice.R;
 
@@ -43,6 +44,10 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
         addMusicButton.setOnClickListener(this);
         confirmAddButton.setOnClickListener(this);
         getMusicLayout = root.findViewById(R.id.musicLayout);
+
+        ViewPager mViewPager = (ViewPager)root.findViewById(R.id.pager);
+        mViewPager.setOffscreenPageLimit(4);
+
 
 
         return root;
