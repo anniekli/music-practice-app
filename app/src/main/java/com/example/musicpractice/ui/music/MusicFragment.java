@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.musicpractice.R;
@@ -24,6 +25,14 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
     EditText newMusic;
     static int i = 1;
     LinearLayout getMusicLayout;
+    private static final int NUM_PAGES = 4;
+    private ViewPager mPager;
+
+    /**
+     * The pager adapter, which provides the pages to the view pager widget.
+     */
+    private PagerAdapter pagerAdapter;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,7 +54,7 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
         confirmAddButton.setOnClickListener(this);
         getMusicLayout = root.findViewById(R.id.musicLayout);
 
-        ViewPager mViewPager = (ViewPager)root.findViewById(R.id.pager);
+        ViewPager mViewPager = root.findViewById(R.id.pager);
         mViewPager.setOffscreenPageLimit(4);
 
 
