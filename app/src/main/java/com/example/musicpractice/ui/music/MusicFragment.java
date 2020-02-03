@@ -2,6 +2,7 @@ package com.example.musicpractice.ui.music;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,11 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
             Log.i(TAG, "addMusicButton clicked");
 
             Button myButton = new Button(getActivity());
-            myButton.setText(search.getQuery());
+            Log.i(TAG, "New button created: " + search.getQuery().toString());
+            myButton.setTransformationMethod(null);
+            myButton.setText(search.getQuery().toString());
+            myButton.setGravity(Gravity.START);
+            myButton.setGravity(Gravity.CENTER_VERTICAL);
             myButton.setId(i);
             i++;
             getMusicLayout.addView(myButton);
