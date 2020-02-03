@@ -1,23 +1,17 @@
 package com.example.musicpractice.ui.music;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.musicpractice.R;
 
@@ -25,7 +19,7 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
     private MusicViewModel musicViewModel;
     private static final String TAG = "MusicFragment";
-    Button addMusicButton, confirmAddButton ;
+    Button addButton;
     static int i = 1;
     LinearLayout getMusicLayout;
     private SearchView search;
@@ -51,19 +45,13 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
 
 
-        addMusicButton = root.findViewById(R.id.addMusicButton);
-        confirmAddButton = root.findViewById(R.id.confirmAddButton);
+        addButton = root.findViewById(R.id.addButton);
 
-
-        search = root.findViewById(R.id.search);
+        search = root.findViewById(R.id.search_bar);
         search.setQueryHint("SearchView Fragment");
 
 
-        search.setVisibility(View.GONE);
-        confirmAddButton.setVisibility(View.GONE);
-
-        addMusicButton.setOnClickListener(this);
-        confirmAddButton.setOnClickListener(this);
+        addButton .setOnClickListener(this);
         getMusicLayout = root.findViewById(R.id.musicLayout);
 
 //        ViewPager mViewPager = root.findViewById(R.id.pager);
@@ -84,37 +72,15 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        if (!(search.getQuery().toString().trim().isEmpty())) {
+            Log.i(TAG, "addMusicButton clicked");
 
-        switch (view.getId()) {
-            case R.id.addMusicButton:
-                Log.i(TAG, "addMusicButton clicked");
-                confirmAddButton.setVisibility(View.VISIBLE);
-                search.setVisibility(View.VISIBLE);
-                addMusicButton.setVisibility(View.GONE);
-                search.setQuery("", true);
-
-                break;
-            case R.id.confirmAddButton:
-                if (!(search.getQuery().toString().trim().isEmpty())) {
-                    Log.i(TAG, "confirmAddButton clicked");
-
-                    search.setVisibility(View.GONE);
-                    confirmAddButton.setVisibility(View.GONE);
-                    addMusicButton.setVisibility(View.VISIBLE);
-
-                    Button myButton = new Button(getActivity());
-                    myButton.setText(search.getQuery());
-                    myButton.setId(i);
-                    i++;
-                    getMusicLayout.addView(myButton);
-                }
-
-                break;
-            // Do this for all buttons.
-            default:
-                throw new IllegalStateException("Unexpected value: " + view.getId());
+            Button myButton = new Button(getActivity());
+            myButton.setText(search.getQuery());
+            myButton.setId(i);
+            i++;
+            getMusicLayout.addView(myButton);
+            search.setQuery("", true);
         }
-
-
     }
 }
