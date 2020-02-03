@@ -12,7 +12,10 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main_app"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
         <activity android:name=".CreateNewActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
