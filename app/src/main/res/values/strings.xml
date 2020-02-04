@@ -22,4 +22,5 @@
     <string name="total_minutes">TOTAL MINUTES</string>
     <string name="day_streak">DAY STREAK</string>
     <string name="your_progress">YOUR PROGRESS</string>
+    <string name="total_hours">TOTAL HOURS</string>
 </resources>

@@ -32,13 +32,6 @@ public class HomeFragment extends Fragment {
         TextView welcomeText = root.findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + name + "!");
 
-
-
-
-
-
-
-
         return root;
     }
 }

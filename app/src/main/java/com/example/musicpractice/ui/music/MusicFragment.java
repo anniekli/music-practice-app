@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.musicpractice.R;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class MusicFragment extends Fragment implements View.OnClickListener {
 
@@ -28,18 +29,9 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "MusicFragment";
     Button addButton;
     private ListView musicList;
-    static int i = 1;
     private SearchView search;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> listViewAdapter;
-
-//    private static final int NUM_PAGES = 4;
-//    private ViewPager mPager;
-//
-//    /**
-//     * The pager adapter, which provides the pages to the view pager widget.
-//     */
-//    private PagerAdapter pagerAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +49,6 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
         musicList = root.findViewById(R.id.listMode);
 
         search = root.findViewById(R.id.search_bar);
-        search.setQueryHint("SearchView Fragment");
 
 
         addButton.setOnClickListener(this);
@@ -69,18 +60,6 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
                 arrayList);
         musicList.setAdapter(listViewAdapter);
 
-//        ViewPager mViewPager = root.findViewById(R.id.pager);
-//        mViewPager.setOffscreenPageLimit(4);
-
-//        if (savedInstanceState == null) {
-//            //Launch HomeFragment onStart...
-//            Fragment fragment = new MusicFragment();
-//            FragmentTransaction ft = getFragmentManager().beginTransaction();
-//            ft.replace(R.id.linearLayoutId, fragment).commit();
-//        }
-
-
-
         return root;
     }
 
@@ -88,8 +67,6 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (!(search.getQuery().toString().trim().isEmpty())) {
-            Log.i(TAG, "addMusicButton clicked");
-
             Log.i(TAG, "New button created: " + search.getQuery().toString());
 
             arrayList.add(search.getQuery().toString());
@@ -98,6 +75,12 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Log.i(TAG, "Item clicked: " + musicList.getItemAtPosition(position).toString());
+                }
+            });
+            listViewAdapter.sort(new Comparator<String>() {
+                @Override
+                public int compare(String one, String two) {
+                    return one.compareTo(two);
                 }
             });
             search.setQuery("", true);
