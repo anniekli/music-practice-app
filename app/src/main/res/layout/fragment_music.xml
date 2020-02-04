@@ -22,7 +22,6 @@
                 android:id="@+id/search_bar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:hint="Mozart Concerto in D Major"
                 android:layout_weight="1"
                 android:showAsAction="collapseActionView|ifRoom"
                 android:actionViewClass="android.widget.SearchView"
@@ -37,19 +36,11 @@
 
         </LinearLayout>
 
-        <ScrollView
+        <ListView
+            android:id="@+id/listMode"
             android:layout_width="match_parent"
-            android:layout_height="834dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:id="@+id/musicLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="match_parent"
+            tools:ignore="InvalidId" />
 
     </LinearLayout>
 

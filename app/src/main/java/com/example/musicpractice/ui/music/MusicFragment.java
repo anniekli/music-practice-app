@@ -6,9 +6,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,14 +20,19 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.musicpractice.R;
 
+import java.util.ArrayList;
+
 public class MusicFragment extends Fragment implements View.OnClickListener {
 
     private MusicViewModel musicViewModel;
     private static final String TAG = "MusicFragment";
     Button addButton;
+    private ListView musicList;
     static int i = 1;
-    LinearLayout getMusicLayout;
     private SearchView search;
+    private ArrayList<String> arrayList;
+    private ArrayAdapter<String> listViewAdapter;
+
 //    private static final int NUM_PAGES = 4;
 //    private ViewPager mPager;
 //
@@ -44,16 +53,21 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
 
 
-
-
         addButton = root.findViewById(R.id.addButton);
+        musicList = root.findViewById(R.id.listMode);
 
         search = root.findViewById(R.id.search_bar);
         search.setQueryHint("SearchView Fragment");
 
 
-        addButton .setOnClickListener(this);
-        getMusicLayout = root.findViewById(R.id.musicLayout);
+        addButton.setOnClickListener(this);
+        arrayList = new ArrayList<>();
+
+        listViewAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                arrayList);
+        musicList.setAdapter(listViewAdapter);
 
 //        ViewPager mViewPager = root.findViewById(R.id.pager);
 //        mViewPager.setOffscreenPageLimit(4);
@@ -76,15 +90,16 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
         if (!(search.getQuery().toString().trim().isEmpty())) {
             Log.i(TAG, "addMusicButton clicked");
 
-            Button myButton = new Button(getActivity());
             Log.i(TAG, "New button created: " + search.getQuery().toString());
-            myButton.setTransformationMethod(null);
-            myButton.setText(search.getQuery().toString());
-            myButton.setGravity(Gravity.START);
-            myButton.setGravity(Gravity.CENTER_VERTICAL);
-            myButton.setId(i);
-            i++;
-            getMusicLayout.addView(myButton);
+
+            arrayList.add(search.getQuery().toString());
+            musicList.setAdapter(listViewAdapter);
+            musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Log.i(TAG, "Item clicked: " + musicList.getItemAtPosition(position).toString());
+                }
+            });
             search.setQuery("", true);
         }
     }
